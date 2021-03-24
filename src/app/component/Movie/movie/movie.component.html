@@ -1,0 +1,30 @@
+<div class="card h-100 mb-4 box-shadow">
+  <img
+    [src]="movie.poster_path ? movieUrl : '/assets/imageNotFound.jpg'"
+    class="card-img-top"
+  />
+  <div class="card-body d-flex flex-column">
+    <h3 class="card-title lead">{{ movie.title }}</h3>
+    <div class="card-text mb-2">
+      {{
+        movie.overview.length > 200
+          ? (movie.overview | slice: 0:200) + "..."
+          : movie.overview
+      }}
+    </div>
+    <p class="card-text"></p>
+    <button
+      [routerLink]="['/movie', movie.id]"
+      class="btn btn-outline-secondary w-100 align-self-end"
+      style="margin-top: auto"
+    >
+      Learn more...
+    </button>
+  </div>
+  <div class="card-footer">
+    <div class="text-center text-muted d-flex justify-content-between">
+      <strong>Release date: &nbsp; </strong>
+      {{ movie.release_date | date: "dd MMMM Y" }}
+    </div>
+  </div>
+</div>

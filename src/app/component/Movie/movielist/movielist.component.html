@@ -1,0 +1,13 @@
+<div class="row row-cols-1 row-cols-xxl-4 row-cols-lg-2">
+  <div class="col mb-4" *ngFor="let movie of movies$">
+    <app-movie [movie]="movie"></app-movie>
+  </div>
+</div>
+<div class="d-flex justify-content-center">
+  <button
+    (click)="nextPage()"
+    class="btn btn-outline-secondary w-50 text-center align-self-end mb-3"
+  >
+    LOAD 20 MORE
+  </button>
+</div>

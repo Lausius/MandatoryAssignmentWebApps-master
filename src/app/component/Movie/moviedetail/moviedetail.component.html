@@ -1,0 +1,50 @@
+<div class="d-flex" style="width: 100%; height: 100vh" *ngIf="!movie">
+  <div
+    class="spinner-border text-primary"
+    role="status"
+    style="margin: auto; width: 5rem; height: 5rem"
+  >
+    <h1 class="sr-only display-1"></h1>
+  </div>
+</div>
+
+<button *ngIf="movie" class="btn btn-outline-secondary align-self-end mb-1" (click)="goBack()">Back</button>
+<div class="row" *ngIf="movie">
+  <div class="col-md-4">
+    <img
+      alt="Poster"
+      class="img-fluid rounded poster"
+      [src]="
+        movie.poster_path
+          ? 'https://image.tmdb.org/t/p/original' + movie.poster_path
+          : '/assets/imageNotFound.jpg'"
+    />
+  </div>
+  <div class="col-md-8">
+    <h1 class="display-2">{{ movie.title }}</h1>
+    <ul class="list-inline">
+      <li
+        class="list-inline-item text-muted"
+        *ngFor="let genre of movie.genres"
+      >
+        {{
+          genre !== movie.genres[movie.genres.length - 1]
+            ? genre.name + ","
+            : genre.name
+        }}
+      </li>
+    </ul>
+    <hr />
+    <p class="lead">{{ movie.overview }}</p>
+    <p class="lead"><strong>Views: </strong>{{ movie.popularity }}</p>
+  </div>
+</div>
+
+<!-- <div class="row p-1" style="border: 1px solid red">
+  <div class="col-md-4" style="border: 1px solid green"></div>
+  <div class="col-md-8" style="border: 1px solid green">
+    <div class="row" style="border: 1px solid black">row1</div>
+    <div class="row" style="border: 1px solid black; height: 10vh">row2</div>
+    <div class="row" style="border: 1px solid black">row2</div>
+  </div>
+</div> -->
