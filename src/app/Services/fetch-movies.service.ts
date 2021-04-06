@@ -23,14 +23,14 @@ export class FetchMoviesService {
   //returns observable
   getMoviesFromQuery(query: string): Observable<Movie[]> {
     if (query === null || query === "") { return this.getMovies(); }
-    return this.http.get<Movie[]>(`https://api.themoviedb.org/3/search/movie?query=${query}&page=${this.currentPage}`, this.httpOptions);
-    // .pipe(
-    //   map((res: any) => {
-    //     return res.results.map((item: Movie) => {
-    //       return item;
-    //     });
-    // })
-    // );
+    return this.http.get<Movie[]>(`https://api.themoviedb.org/3/search/movie?query=${query}&page=${this.currentPage}`, this.httpOptions)
+    .pipe(
+      map((res: any) => {
+        return res.results.map((item: Movie) => {
+          return item;
+        });
+      })
+    );
   }
 
   getMovies(): Observable<Movie[]> {
